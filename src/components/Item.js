@@ -6,7 +6,7 @@ import { IconButton } from '@material-ui/core';
 
 const styles = theme => ({
     button: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing.unit
     },
     item: {
         background: 'white',
@@ -41,15 +41,15 @@ class Item extends React.Component {
             >
                 <Grid
                     Item
-                    xs={10}
+                    xs={9}
+                    style={{ overflow: 'hidden' }}
                 >
                     <p className={classes.itemText}>{data}</p>
                 </Grid>
                 <Grid
                     Item
-                    xs={2}
+                    xs={3}
                 >
-
                     <IconButton
                         className={classes.button}
                         aria-label="Delete"

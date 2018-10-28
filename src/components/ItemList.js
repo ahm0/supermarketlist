@@ -7,7 +7,7 @@ import GridList from '@material-ui/core/GridList';
 import { Button } from '@material-ui/core';
 import AddItemDialog from './AddItemDialog';
 
-const styles = thme => ({
+const styles = () => ({
     subTitle: {
         color: '#939393'
     },
@@ -19,7 +19,9 @@ const styles = thme => ({
     },
     list: {
         height: '300px',
-        width: '800px'
+        width: '800px',
+        display: 'block',
+        overflowX: 'hidden'
     },
     button: {
         background: '#00a8ff',
@@ -29,7 +31,7 @@ const styles = thme => ({
         color: 'white',
         fontSize: '20px',
         padding: '30px',
-        margin: '10px 50px',
+        margin: '20px 0px 0px 50px',
         textTransform: 'capitalize'
     }
 });
