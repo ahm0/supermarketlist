@@ -8,9 +8,19 @@ const styles = theme => ({
     button: {
         margin: theme.spacing.unit,
     },
-    input: {
-        display: 'none',
+    item: {
+        background: 'white',
+        borderRadius: '10px',
+        margin: '0px 50px 10px 50px',
+        height: '60px',
+        lineHeight: '5px'
     },
+    itemText: {
+        textAlign: 'left',
+        fontWeight: 'bold',
+        paddingLeft: '10px',
+        fontSize: '24px'
+    }
 });
 
 class Item extends React.Component {
@@ -27,17 +37,19 @@ class Item extends React.Component {
             <Grid
                 container
                 direction='row'
+                className={classes.item}
             >
                 <Grid
                     Item
                     xs={10}
                 >
-                    {data}
+                    <p className={classes.itemText}>{data}</p>
                 </Grid>
                 <Grid
                     Item
                     xs={2}
                 >
+
                     <IconButton
                         className={classes.button}
                         aria-label="Delete"
@@ -45,10 +57,9 @@ class Item extends React.Component {
                     >
                         <DeleteIcon />
                     </IconButton>
+
                 </Grid>
-
             </Grid>
-
         );
     }
 

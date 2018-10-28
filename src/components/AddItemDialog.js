@@ -47,7 +47,7 @@ class AddItemDialog extends React.Component {
                         autoFocus
                         margin="dense"
                         id="item"
-                        label="Add Item"
+                        placeholder="Item"
                         type="text"
                         fullWidth
                         onChange={this.onChange}
