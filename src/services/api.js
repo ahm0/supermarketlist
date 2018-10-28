@@ -10,7 +10,14 @@ export const getItems = function () {
 
 export const saveItem = function (item) {
     const promise = new Promise((resolve, reject) => {
-        items.push(item);
+        const index = items.indexOf(item);
+        if (index !== -1) {
+            reject(item + ' already exists.');
+        }
+        else {
+            items.push(item);
+        }
+
         resolve(items);
     })
 

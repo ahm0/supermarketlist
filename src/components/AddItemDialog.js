@@ -28,19 +28,13 @@ class AddItemDialog extends React.Component {
         this.setState({ item: event.target.value });
     }
 
-    onKeyDown = (event) => {
-        if (event.keyCode === 13) {
-            this.handleAdd();
-        }
-    }
-
     render() {
         const { ...other } = this.props;
 
         return (
             <Dialog
                 onClose={this.handleClose}
-                onEnter={this.handleEnter}
+                onEnter={this.onKeyDown}
                 aria-labelledby="form-dialog-title"
                 {...other}
             >
@@ -57,7 +51,6 @@ class AddItemDialog extends React.Component {
                         type="text"
                         fullWidth
                         onChange={this.onChange}
-                        onKeyDown={this.onKeyDown}
                     />
                 </DialogContent>
                 <DialogActions>

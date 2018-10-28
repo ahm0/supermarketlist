@@ -69,16 +69,25 @@ class ItemList extends React.Component {
 
     closeAddItemDialog = () => {
         this.setState({ openDialog: false })
+        console.log('close');
     }
 
-    addItem = async (item) => {
-        await saveItem(item);
-        this.closeAddItemDialog();
+    addItem = (item) => {
+        saveItem(item)
+            .then(items => {
+                this.closeAddItemDialog();
+            })
+            .catch(error => {
+                alert(error);
+            })
     }
 
     deleteItemFromList = async (item) => {
-        const items = await deleteItem(item);
-        this.setState({ items })
+        const answer = window.confirm('Do you really want to delete ' + item + ' from the list?');
+        if (answer) {
+            const items = await deleteItem(item);
+            this.setState({ items })
+        }
     }
 
     renderItems() {
@@ -94,39 +103,38 @@ class ItemList extends React.Component {
     }
 
     render() {
+        if (!this.state) {
+            return '';
+        }
+
         const { classes } = this.props;
 
         return (
-            this.state ?
-                <div id="listItems" className={classes.listItems}>
+            <div id="listItems" className={classes.listItems}>
 
-                    {this.renderListTitle()}
+                {this.renderListTitle()}
 
-                    <GridList
-                        container
-                        className={classes.list}
-                    >
-                        {this.renderItems()}
-                    </GridList>
+                <GridList
+                    container
+                    className={classes.list}
+                >
+                    {this.renderItems()}
+                </GridList>
 
-                    <Button
-                        variant='raised'
-                        onClick={this.openAddItemDialog}
-                        className={classes.button}
-                    >
-                        Add item
+                <Button
+                    variant='raised'
+                    onClick={this.openAddItemDialog}
+                    className={classes.button}
+                >
+                    Add item
                     </Button>
 
-                    <AddItemDialog
-                        open={this.state.openDialog}
-                        closeDialog={this.closeAddItemDialog}
-                        addItem={this.addItem}
-                    />
-                </div>
-
-                :
-                ''
-
+                <AddItemDialog
+                    open={this.state.openDialog}
+                    closeDialog={this.closeAddItemDialog}
+                    addItem={this.addItem}
+                />
+            </div>
         );
     }
 }
